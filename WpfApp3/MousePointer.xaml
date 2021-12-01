@@ -1,0 +1,73 @@
+﻿<Page x:Class="WpfApp3.MousePointer"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp3"
+      d:DataContext="{d:DesignInstance Type=local:ValueClass}"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="1000"
+      Title="MousePointer">
+    <Page.Resources>
+        <local:MultiValueEqualityConverter x:Key="multiValueEqualityConverter"/>
+        <Style TargetType="Grid">
+            <Style.Setters>
+                <Setter Property="Background" Value="Blue"/>
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Value="True">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource multiValueEqualityConverter}">
+                            <Binding RelativeSource="{RelativeSource self}" Path="DataContext.MaxValue" Mode="OneWay" />
+                            <Binding RelativeSource="{RelativeSource self}" Path="DataContext.Volume" Mode="OneWay"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Background" Value="Green" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        
+        
+        <!--<Style TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="Blue"/>
+            <Style.Triggers>
+                
+                <DataTrigger Binding="{Binding ValueCondition}" Value="true" >
+                    <Setter Property="Background" Value="Green"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+
+        </Style>-->
+    </Page.Resources>
+
+
+    <Grid x:Name="Grid_" MouseMove="MouseMoveHandler" Visibility="Visible" MouseRightButtonDown="Grid_MouseRightButtonDown" MouseRightButtonUp="Grid_MouseRightButtonUp" Width="1000" Height="1000"  >
+
+        <Canvas x:Name="off" Width="250" Height="250" Visibility="Visible">
+            <Canvas.RenderTransform>
+                <RotateTransform x:Name="offAngle" CenterX="125" CenterY=" 125"/>
+            </Canvas.RenderTransform>
+            <Image Source="C:\Users\Opticho01\source\repos\WpfApp3\WpfApp3\Image\volume_leveling_free.png" Width="250" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center"  MouseLeftButtonDown="Image_MouseLeftButtonDown"  />
+        </Canvas>
+        <Canvas x:Name="on" Width="500" Height="500" Visibility="Hidden" >
+            <Canvas.RenderTransform>
+                <RotateTransform x:Name="onAngle" CenterX="250" CenterY=" 250"/>
+            </Canvas.RenderTransform>
+            <Image Source="C:\Users\Opticho01\source\repos\WpfApp3\WpfApp3\Image\leveling_click.png" Width="500" Height="500" HorizontalAlignment="Center" VerticalAlignment="Center"  MouseLeftButtonDown="Image_MouseLeftButtonDown"  />
+        </Canvas>
+        <TextBox x:Name="Value_Text" HorizontalAlignment="Left" Margin="800,400,0,0" Text="{Binding Volume}" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" />
+        <TextBox x:Name="Rotation_Angle" HorizontalAlignment="Left" Margin="800,440,0,0" Text="{Binding RotationAngle}" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="Step_Size" HorizontalAlignment="Left" Margin="800,480,0,0" Text="{Binding Path = StepSize}" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="Reference_angle" HorizontalAlignment="Left" Margin="800,520,0,0"  Text="{Binding Path = ReferencAangle}" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="Max_Value" HorizontalAlignment="Left" Margin="800,560,0,0"  Text="{Binding Path = MaxValue}" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="Angle_Value" HorizontalAlignment="Left" Margin="800,600,0,0" Text="{Binding ElementName=onAngle, Path = Angle}" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+        <TextBlock HorizontalAlignment="Left" Margin="700,400,0,0" Text="Value_Text" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="700,440,0,0" Text="Rotation_Angle" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="700,480,0,0" Text="Step_Size" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="700,520,0,0" Text="Reference_angle" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="700,560,0,0" Text="Max_Value" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="700,600,0,0" Text="Angle_Value" TextWrapping="Wrap" VerticalAlignment="Top"/>
+    </Grid>
+
+</Page>
