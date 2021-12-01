@@ -1,4 +1,10 @@
-﻿using System.Windows;
+﻿//DependencyProperty로 속성 제작
+//전체를 Resource 형식으로
+//마지막으로 시간이 되면 등록 버튼
+//아 그리고 공식도 변경
+//함수화
+
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -152,6 +158,214 @@ namespace WpfApp3
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//using System.Windows;
+//using System.Windows.Controls;
+//using System.Windows.Input;
+
+
+//namespace WpfApp3
+//{
+//    /// <summary>
+//    /// MousePointer.xaml에 대한 상호 작용 논리
+//    /// </summary>
+//    /// 
+
+//    public partial class MousePointer : Page
+//    {
+//        private bool check = true;
+//        private bool start = false;
+//        private int Rotation_angle2;
+//        private System.Windows.Vector pY;
+//        private System.Windows.Vector pY2;
+
+//        public MousePointer()
+//        {
+//            InitializeComponent();
+//            ViewModel v = new ViewModel();
+//            DataContext = v;
+//        }
+
+//        private void MouseMoveHandler(object sender, MouseEventArgs e2)
+//        {
+//            ViewModel v = DataContext as ViewModel;
+
+
+//            if (!check)
+//            {
+//                if (start)
+//                {
+//                    System.Windows.Point position = e2.GetPosition(this);
+//                    pY = new System.Windows.Vector((float)position.X - 500, (float)position.Y - 500);
+
+//                    v.RotationAngle = (int)System.Windows.Vector.AngleBetween(pY2, pY);
+
+//                    v.Res = v.Num + v.RotationAngle;
+//                    v.Res = v.Res % 360;
+//                    offAngle.Angle = v.Res;
+//                    onAngle.Angle = v.Res;
+
+//                    if (v.RotationAngle > Rotation_angle2)
+//                    {
+//                        if (v.RotationAngle < 0 && Rotation_angle2 > 0)
+//                        {
+
+//                            if (!(v.Volume <= 0))
+//                            {
+//                                if (v.RotationAngle % v.ReferencAangle == 0)
+//                                {
+//                                    v.Volume -= v.StepSize;
+
+//                                }
+//                            }
+//                        }
+//                        else
+//                        {
+//                            if (!(v.Volume >= v.MaxValue))
+//                            {
+//                                if (v.RotationAngle % v.ReferencAangle == 0)
+//                                {
+//                                    v.Volume += v.StepSize;
+//                                }
+//                            }
+
+//                        }
+//                    }
+//                    else if (Rotation_angle2 > v.RotationAngle)
+//                    {
+
+
+//                        if (v.RotationAngle >= 0 && Rotation_angle2 < 0)
+//                        {
+
+//                            if (!(v.Volume >= v.MaxValue))
+//                            {
+//                                if (v.RotationAngle % v.ReferencAangle == 0)
+//                                {
+//                                    v.Volume += v.StepSize;
+//                                }
+//                            }
+
+//                        }
+//                        else
+//                        {
+//                            if (!(v.Volume <= 0))
+//                            {
+//                                if (v.RotationAngle % v.ReferencAangle == 0)
+//                                {
+
+//                                    v.Volume -= v.StepSize;
+
+
+//                                }
+//                            }
+
+
+//                        }
+//                    }
+
+//                    Rotation_angle2 = v.RotationAngle;
+
+
+//                }
+//            }
+//        }
+
+//        private void Grid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+//        {
+//            ViewModel v = DataContext as ViewModel;
+
+//            if (!check)
+//            {
+//                System.Windows.Point position = e.GetPosition(this);
+
+//                pY2 = new System.Windows.Vector((float)position.X - 500, (float)position.Y - 500);
+//                start = true;
+//            }
+//        }
+
+//        private void Grid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+//        {
+//            ViewModel v = DataContext as ViewModel;
+//            start = false;
+//            v.Num = v.Res;
+//        }
+
+//        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+//        {
+//            if (check)
+//            {
+//                on.Visibility = Visibility.Visible;
+//                off.Visibility = Visibility.Hidden;
+//                check = false;
+//            }
+//            else
+//            {
+//                on.Visibility = Visibility.Hidden;
+//                off.Visibility = Visibility.Visible;
+//                check = true;
+//            }
+//        }
+
+
+//    }
+
+
+
+//}
 
 
 
