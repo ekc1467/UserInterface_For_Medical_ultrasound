@@ -98,7 +98,7 @@ namespace WpfApp3
 
             GridRotateButton.MouseLeftButtonDown += (s,e) => GridPointRotateButton_MouseDown(s);
             GridRotateButton.MouseMove += (s, e) => GridPointRotateButton_MouseMove(s);
-
+            
             Binding BindingAngle = new Binding()
             {
                 Source = this,
@@ -117,6 +117,11 @@ namespace WpfApp3
                                         BindingAngle);
 
             GridPointRotateButton.RenderTransform = rotateTransform;
+        }
+
+        private void GridRotateButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void GridPointRotateButton_MouseDown(object obj)

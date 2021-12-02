@@ -10,9 +10,9 @@
       Title="MousePointer">
     <Page.Resources>
         <local:MultiValueEqualityConverter x:Key="multiValueEqualityConverter"/>
-        <Style TargetType="Grid">
+        <Style TargetType="Label">
             <Style.Setters>
-                <Setter Property="Background" Value="Blue"/>
+                <Setter Property="Visibility" Value="Hidden"/>
             </Style.Setters>
             <Style.Triggers>
                 <DataTrigger Value="True">
@@ -22,40 +22,24 @@
                             <Binding RelativeSource="{RelativeSource self}" Path="DataContext.Volume" Mode="OneWay"/>
                         </MultiBinding>
                     </DataTrigger.Binding>
-                    <Setter Property="Background" Value="Green" />
+                    <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
-        
-        
-        <!--<Style TargetType="{x:Type Grid}">
-            <Setter Property="Background" Value="Blue"/>
-            <Style.Triggers>
-                
-                <DataTrigger Binding="{Binding ValueCondition}" Value="true" >
-                    <Setter Property="Background" Value="Green"></Setter>
-                </DataTrigger>
-            </Style.Triggers>
-
-        </Style>-->
     </Page.Resources>
 
 
-    <Grid x:Name="Grid_" MouseMove="MouseMoveHandler" Visibility="Visible" MouseRightButtonDown="Grid_MouseRightButtonDown" MouseRightButtonUp="Grid_MouseRightButtonUp" Width="1000" Height="1000"  >
+    <Grid x:Name="Grid_" MouseMove="MouseMoveHandler" Visibility="Visible" MouseRightButtonDown="Grid_MouseRightButtonDown" MouseRightButtonUp="Grid_MouseRightButtonUp" Width="1000" Height="1000" >
+        <Canvas x:Name="on" Width="500" Height="500"  RenderTransformOrigin="0.5,0.5"  >
+            <Canvas.RenderTransform >
+                <RotateTransform x:Name="onAngle" />
+            </Canvas.RenderTransform>
 
-        <Canvas x:Name="off" Width="250" Height="250" Visibility="Visible">
-            <Canvas.RenderTransform>
-                <RotateTransform x:Name="offAngle" CenterX="125" CenterY=" 125"/>
-            </Canvas.RenderTransform>
-            <Image Source="C:\Users\Opticho01\source\repos\WpfApp3\WpfApp3\Image\volume_leveling_free.png" Width="250" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center"  MouseLeftButtonDown="Image_MouseLeftButtonDown"  />
+            <Image Name="offCtr" Visibility="Visible" Source="C:\Users\Opticho01\source\repos\WpfApp3\WpfApp3\Image\Stop_Volume_Controller_.jpg" Width="250" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center"  MouseLeftButtonDown="Image_MouseLeftButtonDown" Canvas.Left="125" Canvas.Top="125"  />
+            <Image Name="onCtr" Visibility="Hidden" Source="C:\Users\Opticho01\source\repos\WpfApp3\WpfApp3\Image\Start_Volume_Controller.jpg" Width="250" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center"  MouseLeftButtonDown="Image_MouseLeftButtonDown"  Canvas.Left="125" Canvas.Top="125"/>
+
         </Canvas>
-        <Canvas x:Name="on" Width="500" Height="500" Visibility="Hidden" >
-            <Canvas.RenderTransform>
-                <RotateTransform x:Name="onAngle" CenterX="250" CenterY=" 250"/>
-            </Canvas.RenderTransform>
-            <Image Source="C:\Users\Opticho01\source\repos\WpfApp3\WpfApp3\Image\leveling_click.png" Width="500" Height="500" HorizontalAlignment="Center" VerticalAlignment="Center"  MouseLeftButtonDown="Image_MouseLeftButtonDown"  />
-        </Canvas>
+        <Label Content="Max" FontSize="30" Margin="0,700,0,0"  HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
         <TextBox x:Name="Value_Text" HorizontalAlignment="Left" Margin="800,400,0,0" Text="{Binding Volume}" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" />
         <TextBox x:Name="Rotation_Angle" HorizontalAlignment="Left" Margin="800,440,0,0" Text="{Binding RotationAngle}" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
         <TextBox x:Name="Step_Size" HorizontalAlignment="Left" Margin="800,480,0,0" Text="{Binding Path = StepSize}" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>

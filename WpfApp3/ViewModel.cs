@@ -5,7 +5,6 @@
         public ViewModel()
 
         {
-
             Volume = 0;
             StepSize = 3;
             ReferencAangle = 10;

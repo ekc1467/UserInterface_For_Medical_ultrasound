@@ -27,7 +27,7 @@ namespace WpfApp3
         {
 
             NavigationService.Navigate(
-                new Uri("/RotateVolume.xaml", UriKind.Relative)
+                new Uri("/Touch.xaml", UriKind.Relative)
                 );
 
         }
